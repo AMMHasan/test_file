@@ -3,8 +3,17 @@ image:
 
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: echo 'init script' # runs during prebuild
-    command: echo 'start script'
+  - init: echo 'installing samtools' # runs during prebuild
+    command: 
+          wget https://github.com/samtools/samtools/releases/download/1.16.1/samtools-1.16.1.tar.bz2
+          tar xvf samtools-1.16.1.tar.bz2
+          cd samtools-1.16.1/
+          ./configure --prefix=$PWD
+          make
+          make install
+
+
+
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:
